@@ -1,0 +1,253 @@
+
+/*
+date value is used in different situtation.
+create a date class with given
+description:
+
+A.data members
+i)unsigned int day,month,year;
+B. member function
+i) default constructor with initial values.
+ii)parameterized constructor: validate day and month;
+iii)overload<<operator todisplay date value.
+
+create a address class with given description:
+A.data members;
+i)city of type string
+ii)pincode-int
+
+B.member function:
+i)default constructor with initial values.
+ii)parameterized constructor.
+iii)display function to display();
+
+create a class called exam with exam_code,exam_date as datamembers;
+make sure exam date should be unique
+make use of date class for exam date;
+
+member function:
+i)default constructor with initial values.
+ii)parameterized constructor;
+iii)display function.
+
+create a calss called offlineexam as a derived class of exam class.
+data members:
+i) exam_loc-make use of address class for exam location
+
+member function:
+i) default constructor with initial values.
+ii) parameterized constructor.
+iii)display function.
+
+create a class onlineexam as a derived class of exam class.
+
+data member
+i) exam_platform - make use of enum {SYNAP, METTL}
+
+MEMBER function:
+i)default constructor with initail values.
+ii) display function (also display exam_platform)
+
+->create an array of 3 objects with online exam on heap memory.
+->display the exam conductedon METTL.
+->Create an array of 3 objects with offline exam in stack memory.
+find exam object based on city given. Handle exception if exam not found.
+
+make different files like .h,.cpp and main.cpp
+
+*/
+
+
+
+#ifndef DATE_H
+#define DATE_H
+
+#include <iostream>
+
+class Date {
+private:
+    unsigned int day, month, year;
+
+public:
+    Date();
+    Date(unsigned int day, unsigned int month, unsigned int year);
+    friend std::ostream& operator<<(std::ostream& os, const Date& date);
+};
+
+#endif // DATE_H
+
+
+#include "Date.h"
+
+Date::Date() : day(1), month(1), year(2000) {}
+
+Date::Date(unsigned int day, unsigned int month, unsigned int year) {
+    // Validate day and month here
+    // Assign values to data members
+}
+
+std::ostream& operator<<(std::ostream& os, const Date& date) {
+    os << date.day << "/" << date.month << "/" << date.year;
+    return os;
+}
+
+
+#ifndef ADDRESS_H
+#define ADDRESS_H
+
+#include <string>
+
+class Address {
+private:
+    std::string city;
+    int pincode;
+
+public:
+    Address();
+    Address(const std::string& city, int pincode);
+    void display() const;
+};
+
+#endif // ADDRESS_H
+
+
+#include "Address.h"
+#include <iostream>
+
+Address::Address() : city(""), pincode(0) {}
+
+Address::Address(const std::string& city, int pincode) : city(city), pincode(pincode) {}
+
+void Address::display() const {
+    std::cout << "City: " << city << ", Pincode: " << pincode << std::endl;
+}
+
+
+#ifndef EXAM_H
+#define EXAM_H
+
+#include "Date.h"
+
+class Exam {
+private:
+    int exam_code;
+    Date exam_date;
+
+public:
+    Exam();
+    Exam(int exam_code, const Date& exam_date);
+    void display() const;
+};
+
+#endif // EXAM_H
+
+
+#include "Exam.h"
+#include <iostream>
+
+Exam::Exam() : exam_code(0), exam_date() {}
+
+Exam::Exam(int exam_code, const Date& exam_date) : exam_code(exam_code), exam_date(exam_date) {}
+
+void Exam::display() const {
+    std::cout << "Exam Code: " << exam_code << ", Exam Date: " << exam_date << std::endl;
+}
+
+
+#ifndef OFFLINE_EXAM_H
+#define OFFLINE_EXAM_H
+
+#include "Exam.h"
+#include "Address.h"
+
+class OfflineExam : public Exam {
+private:
+    Address exam_loc;
+
+public:
+    OfflineExam();
+    OfflineExam(int exam_code, const Date& exam_date, const Address& exam_loc);
+    void display() const;
+};
+
+#endif // OFFLINE_EXAM_H
+
+
+#include "OfflineExam.h"
+#include <iostream>
+
+OfflineExam::OfflineExam() : Exam(), exam_loc() {}
+
+OfflineExam::OfflineExam(int exam_code, const Date& exam_date, const Address& exam_loc)
+    : Exam(exam_code, exam_date), exam_loc(exam_loc) {}
+
+void OfflineExam::display() const {
+    Exam::display();
+    std::cout << "Exam Location: ";
+    exam_loc.display();
+}
+
+#ifndef ONLINE_EXAM_H
+#define ONLINE_EXAM_H
+
+#include "Exam.h"
+
+enum ExamPlatform { SYNAP, METTL };
+
+class OnlineExam : public Exam {
+private:
+    ExamPlatform exam_platform;
+
+public:
+    OnlineExam();
+    OnlineExam(int exam_code, const Date& exam_date, ExamPlatform exam_platform);
+    void display() const;
+};
+
+#endif // ONLINE_EXAM_H
+
+
+#include "OnlineExam.h"
+#include <iostream>
+
+OnlineExam::OnlineExam() : Exam(), exam_platform(SYNAP) {}
+
+OnlineExam::OnlineExam(int exam_code, const Date& exam_date, ExamPlatform exam_platform)
+    : Exam(exam_code, exam_date), exam_platform(exam_platform) {}
+
+void OnlineExam::display() const {
+    Exam::display();
+    std::cout << "Exam Platform: " << (exam_platform == SYNAP ? "SYNAP" : "METTL") << std::endl;
+}
+
+
+#include <iostream>
+#include "Date.h"
+#include "Address.h"
+#include "Exam.h"
+#include "OfflineExam.h"
+#include "OnlineExam.h"
+
+int main() {
+    // Creating Date objects
+    Date date1(10, 3, 2024);
+    Date date2(12, 3, 2024);
+
+    // Creating Address objects
+    Address address1("New York", 10001);
+    Address address2("Los Angeles", 90001);
+
+    // Creating Exam objects
+    OfflineExam offlineExam1(1001, date1, address1);
+    OnlineExam onlineExam1(2001, date2, METTL);
+
+    // Displaying exams
+    std::cout << "Offline Exam:" << std::endl;
+    offlineExam1.display();
+    std::cout << std::endl;
+
+    std::cout << "Online Exam:" << std::endl;
+    onlineExam1.display();
+
+    return 0;
+}

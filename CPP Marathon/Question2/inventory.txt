@@ -1,0 +1,68 @@
+/*
+
+create a class inventory that a warehouse stock manager might use to present their stock of product and raw material
+
+A. Datamember:
+    std::string description_of_product;
+    int balance_stock;
+    int productcode;
+    producttype{Accessories,shopping}
+
+B.memberfunction:
+    1)default constructor-initial product stock size should be breater than 20,which is the company minimum stock level;
+    2) parameterized consttructor- Make validation
+    3) purchaseProduct() function-it should add a product quanitity to the current stock and dispaly current stock;
+    4) saleproduct() function-it should reduce stock. ensure after each sale that the stock level doesnot drop below 20. Also display the stock. if stock level goes below 20 then throw excpetion "low stock level"
+    5) Add gloabal function called find() to find details of particular product based on product code.
+    this function takes 3 argument like array of inventory objects,size of array and product code. display appropraite error msg if prouct not found [Handel exception].
+
+    6)display all shopin products from array created.
+
+C. client code:
+    i)create object of inventory class with intital stock size 30;
+    test the member function purchase and sale();
+    ii)create array of 3 inventory object and test working of search function
+
+    code should be implemented in 3 files inventory.h,inventory.cpp, main.cpp;
+
+    testcases: 
+    1) to validate sale and purchase functionality of inventory class
+    input:
+        Inventory iobj(30)
+        iobj.sale(5)
+        iobj.sale(4)
+        iobj.purchase(10);
+        iobj.sale(25);
+    output:
+        After sale stock:25
+        after sale stcok:21
+        after sale purchase:31
+        Excption:"Low stock level"
+
+    2)to validate sale and purchase functionality of inventory class
+    input:
+        inventory iobj(50);
+        iobj.purchase(10);
+        iobj.sale(45);
+    output:
+        after purchase stock:60
+        exception:"Low stock level"
+
+    3)to validate search functionality
+    input:
+    inventory iarr[3]={
+        {"Household",100,50111},
+        {"Electronic",500,50112},
+        {"Sports",300,50113}
+    };
+    search(iarr,3,50112);
+    search(iarr,3,50118);
+
+    output:
+    product found;
+    exception:"product not found"
+
+    
+
+*/
+
