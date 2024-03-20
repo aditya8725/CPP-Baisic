@@ -1,0 +1,622 @@
+#include <iostream>
+
+int main()
+{
+    // int n1,n2;
+    // std:: cout<<"\n Enter 2 numbers: ";
+    // std::cin>>n1>>n2;
+    // std::cout<<"Hello World";
+
+    int arr[5] = {10,20,30,40,50};
+    int* ptr = arr;
+    std::cout<<*ptr;
+    
+    ptr++;
+    std::cout<<"\n"<<*ptr;
+    return 0;
+}
+
+
+==============================================================
+
+
+
+#include <iostream>
+// using namespace std;
+
+void swap(int &x, int &y)
+{
+    int temp = x;
+    x = y
+    y = temp;
+    
+}
+int main() {
+    // Write C++ code her
+    int a = 10;
+    int b = 20;
+    std::cout<<a<<" "<<b <<std::endl;
+    //std::cout<<a<<" "<<b <<"\n";
+    swap(a,b);
+    std::cout<<a<<" "<<b<<std::endl;
+
+    return 0;
+}
+
+
+======================================================
+
+// Online C++ compiler to run C++ program online
+#include <iostream>
+#include<cstring>
+
+class Student{
+    //attributes/ data members //instance field
+    int rollno;
+    char name[20];
+    double marks;
+    
+    public:
+    Student(); // default constructor
+    Student(int, char* ,double); //parameterrizaed construtor
+    void display();
+};
+
+Student :: Student()
+{
+    rollno=1;
+    strcpy(name,"Aditya");
+    marks=90;
+}
+
+Student :: Student(int r, char *nm, double mk)
+{
+    rollno=r;
+    strcpy(name,nm);
+    marks=mk;
+}
+
+void Student::display()
+{
+    std::cout<<rollno<<"\t"<<name<<"\t"<<marks<<std::endl;
+}
+int main() {
+    // Write C++ code here
+    Student s1; //object is created in stack memory
+    s1.display();
+    
+    Student s2(2,"Shreyaansh",99.99);
+    s2.display();
+
+ 
+    //If i want to create object in heap memory not in stack
+    //ptr of tudent type
+    Student *stuptr = new Student();
+    stuptr-> display();//we use arror function to access the student pointer from function
+    
+     delete stuptr; // must be given or else there  will be a memory leakage
+
+
+   // Stack me banane k liye
+     Student s[3] = {
+         {11,"Jay",88},
+         {12,"May",78},
+         {13,"Say",66}
+     };
+     
+     for(int i=0;i<3;i++)
+     {
+         s[i].display();
+     }
+
+    return 0;
+}
+
+
+
+
+
+================================================
+// Online C++ compiler to run C++ program online
+#include <iostream>
+#include<cstring>
+
+class Student{
+    //attributes/ data members //instance field
+    int rollno;
+    char name[20];
+    double marks;
+    
+    public:
+    Student(); // default constructor
+    Student(int, char* ,double); //parameterrizaed construtor
+    void display();
+};
+
+Student :: Student()
+{
+    rollno=1;
+    strcpy(name,"Aditya");
+    marks=90;
+}
+
+Student :: Student(int r, char *nm, double mk)
+{
+    rollno=r;
+    strcpy(name,nm);
+    marks=mk;
+}
+
+void Student::display()
+{
+    std::cout<<rollno<<"\t"<<name<<"\t"<<marks<<std::endl;
+}
+int main() {
+    // Write C++ code here
+    Student s1; //object is created in stack memory
+    s1.display();
+    
+    Student s2(2,"Shreyaansh",99.99);
+    s2.display();
+    
+     
+     //If i want to create object in heap memory not in stack
+    //ptr of tudent type
+    Student *stuptr = new Student();
+    stuptr-> display();//we use arror function to access the student pointer from function
+    
+     delete stuptr; // must be given or else there  will be a memory leakage
+     
+   // Stack me banane k liye
+     Student s[3] = {
+         {11,"Jay",88},
+         {12,"May",78},
+         {13,"Say",66}
+     };
+     
+     for(int i=0;i<3;i++)
+     {
+         s[i].display();
+     }
+     
+     //Q) find the record of a given roll number;
+     int rno;
+     std::cout<<"\n Enter roll no to search the record: ";
+     std::cin>>rno;
+     bool flag = false;
+     
+    for(int i=0;i<3;i++)
+     {
+         if(s[i].getRollnp()== rno)
+         {
+             std::cout<<"\n Record found are the details as below: ";
+             s[i].display();
+             flag=true;
+             break;
+         }
+     }
+     if(!flag)
+     {
+         std::cout<<"\n Record not Found....";
+     }
+     
+     
+    //  std::cout<<"===================";
+     
+    //   Student *sp = new Student[2];
+    //   for(int i=0;i<3;i++)
+    //   {
+    //       sp[i].display();
+    //   }
+
+
+    return 0;
+   
+}
+
+
+
+========================================================
+
+// Online C++ compiler to run C++ program online
+#include <iostream>
+#include<cstring>
+
+class Student{
+    //attributes/ data members //instance field
+    int rollno;
+    char name[20];
+    double marks;
+    
+    public:
+    Student(); // default constructor
+    Student(int, char* ,double); //parameterrizaed construtor
+    void display();
+       // Getter for roll number
+    int getRollNo() const {
+        return rollno;
+    }
+
+    // Setter for roll number
+    void setRollNo(int r) {
+        rollno = r;
+    }
+
+    // Getter for name
+    const char* getName() const {
+        return name;
+    }
+
+    // Setter for name
+    void setName(const char* n) {
+        strncpy(name, n, sizeof(name) - 1);
+        name[sizeof(name) - 1] = '\0';
+    }
+
+    // Getter for marks
+    double getMarks() const {
+        return marks;
+    }
+
+    // Setter for marks
+    void setMarks(double mk) {
+        marks = mk;
+    }
+};
+
+Student :: Student()
+{
+    rollno=1;
+    strcpy(name,"Aditya");
+    marks=90;
+}
+
+Student :: Student(int r, char *nm, double mk)
+{
+    rollno=r;
+    strcpy(name,nm);
+    marks=mk;
+}
+
+void Student::display()
+{
+    std::cout<<rollno<<"\t"<<name<<"\t"<<marks<<std::endl;
+}
+int main() {
+    // Write C++ code here
+    Student s1; //object is created in stack memory
+    s1.display();
+    
+    // Student s2(2,"Shreyaansh",99.99);
+    // s2.display();
+    
+     
+     //If i want to create object in heap memory not in stack
+    //ptr of tudent type
+    //Student *stuptr = new Student();
+    //stuptr-> display();
+    //we use arror function to access the student pointer from function
+    
+    // delete stuptr; // must be given or else there  will be a memory leakage
+     
+   // Stack me banane k liye
+    //  Student s[3] = {
+    //      {11,"Jay",88},
+    //      {12,"May",78},
+    //      {13,"Say",66}
+    //  };
+     
+    //  for(int i=0;i<3;i++)
+    //  {
+    //      s[i].display();
+    //  }
+     
+     //Q) find the record of a given roll number;
+     int rno;
+     std::cout<<"\n Enter roll no to search the record: ";
+     std::cin>>rno;
+     bool flag = false;
+     
+    for(int i=0;i<3;i++)
+     {
+         if(s[i].getRollNo()== rno)
+         {
+             std::cout<<"\n Record found are the details as below: ";
+             s[i].display();
+             flag=true;
+             break;
+         }
+     }
+     if(!flag)
+     {
+         std::cout<<"\n Record not Found....";
+     }
+     
+     
+    //  std::cout<<"===================";
+     
+    //   Student *sp = new Student[2];
+    //   for(int i=0;i<3;i++)
+    //   {
+    //       sp[i].display();
+    //   }
+
+    Student st[2];
+    int r;
+    char nm[20];
+    double mk;
+    
+    for(int i=0;i<2;i++)
+    {
+        std::cout<<"\n Enter Roll No: ";
+        std::cin>>r;
+        st[i].setRollNo(r);
+        
+        std::cout<<"\n Enter Name: ";
+        std::cin>>nm;
+        st[i].setName(nm);
+        
+        std::cout<<"\n Enter marks: ";
+        std::cin>mk;
+        st[i].setMarks(mk);
+    }
+
+    return 0;
+   
+}
+
+===================================================
+
+madhav code
+#include<iostream>
+#include<cstring>
+class Student {
+    int rollno;
+    char name[20];
+    double marks;
+    public:
+    Student();
+    Student(int r,char* nm,double d) {
+        rollno=r;
+        strcpy(name,nm);
+        marks=d;
+    }
+    void display();
+    int getrollno() const {return rollno;}
+ 
+};
+Student::Student() {
+    rollno=1;
+    strcpy(name,"Rahul");
+    marks=90.50;
+}
+ 
+// Student::Student(int r, char* nm, double d) {
+//     rollno=r;
+//     strcpy(name,nm);
+//     marks=d;
+// }
+ 
+void Student::display() {
+    std::cout<<rollno<<" "<<name<<" "<<marks;
+}
+ 
+int main() {
+    Student *ptr = new Student();
+    // ptr->display();
+    std::cout<<std::endl;
+    Student s[3] = {{11,"Jay",33},{1,"Priya",99},{13,"kiran",77}};
+    // for(int i=0;i<3;i++) {
+    //     s[i].display();
+    // }
+
+    bool flag = false;
+    int rno;
+    std::cout<<"Enter rollno to be searched : ";
+    std::cin>>rno;
+    for(int i=0;i<3;i++) {
+        if(s[i].getrollno() == rno)
+        {
+            s[i].display();
+            flag = true;
+            break;
+        }
+    }
+    if(!flag) {
+        std::cout<<"Record not found";
+    }
+}
+
+===================================================
+my code
+
+// Online C++ compiler to run C++ program online
+#include <iostream>
+#include<cstring>
+
+class Student{
+    //attributes/ data members //instance field
+    int rollno;
+    char name[20];
+    double marks;
+    
+    public:
+    Student(); // default constructor
+    Student(int, char* ,double); //parameterrizaed construtor
+    void display();
+       // Getter for roll number
+    int getRollNo() const {
+        return rollno;
+    }
+
+    // Setter for roll number
+    void setRollNo(int rno) {
+        rollno = rno;
+    }
+
+    // Getter for name
+    const char* getName() const {
+        return name;
+    }
+
+    // Setter for name
+    void setName(const char* n) {
+        strncpy(name, n, sizeof(name) - 1);
+        name[sizeof(name) - 1] = '\0';
+    }
+
+    // Getter for marks
+    double getMarks() const {
+        return marks;
+    }
+
+    // Setter for marks
+    void setMarks(double mk) {
+        marks = mk;
+    }
+};
+
+Student :: Student()
+{
+    rollno=1;
+    strcpy(name,"Aditya");
+    marks=90;
+}
+
+Student :: Student(int r, char *nm, double mk)
+{
+    rollno=r;
+    strcpy(name,nm);
+    marks=mk;
+}
+
+void Student::display()
+{
+    std::cout<<rollno<<"\t"<<name<<"\t"<<marks<<std::endl;
+}
+int main() {
+    // Write C++ code here
+    Student s[2]; //object is created in stack memory
+    //s1.display();
+    
+    // Student s2(2,"Shreyaansh",99.99);
+    // s2.display();
+    
+     
+     //If i want to create object in heap memory not in stack
+    //ptr of tudent type
+    //Student *stuptr = new Student();
+    //stuptr-> display();
+    //we use arror function to access the student pointer from function
+    
+    // delete stuptr; // must be given or else there  will be a memory leakage
+     
+   // Stack me banane k liye
+    //  Student s[3] = {
+    //      {11,"Jay",88},
+    //      {12,"May",78},
+    //      {13,"Say",66}
+    //  };
+     
+    //  for(int i=0;i<3;i++)
+    //  {
+    //      s[i].display();
+    //  }
+     
+    // Q) find the record of a given roll number;
+     int rno;
+     std::cout<<"\n Enter roll no to search the record: ";
+     std::cin>>rno;
+     bool flag = false;
+     
+    for(int i=0;i<3;i++)
+     {
+         if(s[i].getRollNo()== rno)
+         {
+             std::cout<<"\n Record found are the details as below: ";
+             s[i].display();
+             flag=true;
+             break;
+         }
+     }
+     if(!flag)
+     {
+         std::cout<<"\n Record not Found....";
+     }
+     
+     
+    //  std::cout<<"===================";
+     
+    //   Student *sp = new Student[2];
+    //   for(int i=0;i<3;i++)
+    //   {
+    //       sp[i].display();
+    //   }
+
+    Student st[2];
+    int r;
+    char nm[20];
+    double mk;
+    
+    for(int i=0;i<2;i++)
+    {
+        std::cout<<"\n Enter Roll No: ";
+        std::cin>>r;
+        st[i].setRollNo(r);
+        
+        std::cout<<"\n Enter Name: ";
+        std::cin>>nm;
+        st[i].setName(nm);
+        
+        std::cout<<"\n Enter marks: ";
+        std::cin>>mk;
+        st[i].setMarks(mk);
+        
+    }
+
+    for(int i=0;i<2;i++)
+    {
+        st[i].display();
+    }
+    return 0;
+   
+}
+
+
+====================================================================
+
+#ifndef COMPLEX_H
+#define COMPLEX_H
+
+#include <iostream>
+
+class complex
+{
+    int real;
+    int imag;
+
+public:
+    complex();
+    complex(int, int);
+    void display();
+    // bool operator==(const complex &c2)
+    // {
+    //     if (real == c1.real && imag == c2.imag)
+    //     {
+    //         return true;
+    //     }
+    //     else
+    //     {
+    //         return false;
+    //     }
+    // }
+
+    // above code can be written as 
+    bool operator==(const complex &c2)
+    {
+        return (real==c2.real && imag==c2.imag);
+    }
+
+};
+
+#endif // COMPLEX_H
