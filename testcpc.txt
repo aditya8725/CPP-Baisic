@@ -1,0 +1,45 @@
+day-1
+student example
+
+day-2
+-static--->Q1
+-[]subscript overloading --->Q3
+*bookname-->char demonstartn ---->Q4
+copy constructor --->Xlab
+
+day-3
+-operator overloading-->Q1
+
+day-04
+containment
+doctor,hosp,date -->Q3
+add,date,ploicy --->Q4 Hw io and display
+
+day-05
+inheritance
+employee-->q1
+
+virtual -->q2
+
+policy insurance--->q4 policyy hw
+vehicle inheritance -->q4 vehicel hw
+
+
+day-06
+Q1---> enum 
+Q2--->main2--->try-catch exception handling
+==================================
+
+xtest --->
+Q2---->all in one oeprator overloading in studnetS
+
+xtemp-->
+bank(enum)
+
+car sepecificatio
+
+flight
+
+items 
+
+date_cust_bill(shopping)
